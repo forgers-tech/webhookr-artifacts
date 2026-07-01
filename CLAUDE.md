@@ -1,4 +1,4 @@
-# CLAUDE.md — webhookr-mkt
+# CLAUDE.md — webhookr-artifacts
 
 This repository is the **artifact store** for Webhookr marketing and product-communication work
 (landing pages, briefs, competitive analysis, launch copy, etc.), most of it produced by the
@@ -17,7 +17,7 @@ and positioning evolved over time. Artifacts are never overwritten in place.
 ## Storage convention (required)
 
 ```
-artifacts/
+marketing/
   <YYYY-MM-DD>-<topic-slug>/            # one folder per generation session, date-prefixed
     <YYYY-MM-DD>-<artifact-name>-v<N>.md
 ```
@@ -43,7 +43,7 @@ Rules:
    ---
    ```
 
-5. **Index** — add one line per new artifact to `artifacts/INDEX.md` (newest first) so the history
+5. **Index** — add one line per new artifact to `marketing/INDEX.md` (newest first) so the history
    is scannable without walking the tree.
 
 ## Artifact types (typical `<artifact-name>` values)
