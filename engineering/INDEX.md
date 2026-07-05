@@ -3,7 +3,7 @@
 Newest first. One line per artifact. Follows the same storage convention as `marketing/` (see `../CLAUDE.md`).
 
 ## 2026-07-05 — redis-cloud-migration (manual)
-- [adr-redis-cloud-migration v1](2026-07-05-redis-cloud-migration/2026-07-05-adr-redis-cloud-migration-v1.md) — replace in-cluster K3S Redis (audit P0: SPOF, no backup) with Redis Cloud HA + AOF 1s + TLS; single `rediss://` REDIS_URL across ingest/svc/bff; Terraform-imported; big-bang cutover
+- [adr-redis-cloud-migration v1](2026-07-05-redis-cloud-migration/2026-07-05-adr-redis-cloud-migration-v1.md) — replace in-cluster K3S Redis (audit P0: SPOF, no backup) with Redis Cloud HA + AOF 1s + TLS; single `rediss://` `REDIS_URL` across ingest/svc/bff; Terraform-imported; big-bang cutover
 
 ## 2026-07-05 — ingest-slug-validation (manual)
 - [adr-ingest-slug-validation v1](2026-07-05-ingest-slug-validation/2026-07-05-adr-ingest-slug-validation-v1.md) — validate slug at the edge via authenticated internal resolver in svc + in-process cache + opossum breaker + stale-while-error; `whr_`+16 base62 slugs; 5 options compared

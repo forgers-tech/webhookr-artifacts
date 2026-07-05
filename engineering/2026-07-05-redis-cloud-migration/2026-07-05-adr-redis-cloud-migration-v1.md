@@ -48,7 +48,7 @@ Move to a Redis Cloud database: HA single-zone (99.9% uptime SLA), AOF
 `appendfsync everysec`, `noeviction` (required by BullMQ), TLS.
 
 - **Pros:** removes the SPOF and the backup burden in one move; durability
-  (AOF 1 s) restores the `202` contract; TLS in transit (queue payloads are
+  (AOF 1s) restores the `202` contract; TLS in transit (queue payloads are
   additionally sealed with AES-256-GCM at the application layer); provider
   handles failover, patching, monitoring of the datastore itself.
 - **Cons:** enqueue latency now includes WAN RTT from Hetzner (nbg1) to the
@@ -60,7 +60,7 @@ Move to a Redis Cloud database: HA single-zone (99.9% uptime SLA), AOF
 
 ## Decision
 
-**Option B.** The database was provisioned manually (HA single zone, 99.9%,
+**Option B.** The database was provisioned manually (HA single-zone, 99.9%,
 AOF everysec, noeviction, TLS); Terraform imports it (`RedisLabs/rediscloud`
 provider, `import {}` blocks) so it is state-managed from day one — config
 drift, plan changes, and the connection string all flow through code review.
