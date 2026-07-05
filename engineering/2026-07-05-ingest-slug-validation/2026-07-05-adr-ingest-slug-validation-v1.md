@@ -130,7 +130,7 @@ internal endpoint on svc, with the following design choices:
    retries, opens after ~5 consecutive failures, half-open after 10 s).
    Chosen over hand-rolling because it is the de facto Node.js breaker,
    dependency-free, event-emitting (drives a Prometheus state gauge), and
-   battle-tested; a bespoke breaker would be an undertested risk in the hot path.
+   battle-tested; a bespoke breaker would be an under-tested risk in the hot path.
    A `404` from the resolver is a *value* (NOK), never an error — invalid-slug
    floods must not trip the breaker.
 6. **Stale-while-error:** when the breaker is open or the call fails, slugs
