@@ -128,9 +128,9 @@ internal endpoint on svc, with the following design choices:
    machinery — and likely removes the need for Option 3 entirely.
 5. **Circuit breaker: opossum** (timeout 300 ms on the HTTP call, zero
    retries, opens after ~5 consecutive failures, half-open after 10 s).
-   Chosen over hand-rolling because it is the de-facto Node.js breaker,
+   Chosen over hand-rolling because it is the de facto Node.js breaker,
    dependency-free, event-emitting (drives a Prometheus state gauge), and
-   battle-tested; a bespoke breaker would be undertested risk in the hot path.
+   battle-tested; a bespoke breaker would be an undertested risk in the hot path.
    A `404` from the resolver is a *value* (NOK), never an error — invalid-slug
    floods must not trip the breaker.
 6. **Stale-while-error:** when the breaker is open or the call fails, slugs
