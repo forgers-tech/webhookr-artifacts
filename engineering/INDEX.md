@@ -2,6 +2,10 @@
 
 Newest first. One line per artifact. Follows the same storage convention as `marketing/` (see `../CLAUDE.md`).
 
+## 2026-07-05 — infra-security-matrix (manual)
+- [adr-infra-security-matrix v1](2026-07-05-infra-security-matrix/2026-07-05-adr-infra-security-matrix-v1.md) — network least-privilege: deny-by-default egress (port-scoped, private-range except = SSRF guard), delivery 443-only, /docs blocked in depth; accepted risks (Neon no IP allowlist → GA revisit, 41641/ICMP, BFF public); operational matrix in gitops
+- [threat-model-infra v1](2026-07-05-infra-security-matrix/2026-07-05-threat-model-infra-v1.md) — STRIDE-lite over the infra trust boundaries (SSRF, exfiltration, lateral movement, recon, origin bypass, admin exposure, supply chain) with the mitigating control per threat; residual/accepted risks
+
 ## 2026-07-05 — redis-cloud-migration (manual)
 - [adr-redis-cloud-migration v1](2026-07-05-redis-cloud-migration/2026-07-05-adr-redis-cloud-migration-v1.md) — replace in-cluster K3S Redis (audit P0: SPOF, no backup) with Redis Cloud HA + AOF 1s + TLS; single `rediss://` `REDIS_URL` across ingest/svc/bff; Terraform-imported; big-bang cutover
 
