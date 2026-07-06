@@ -51,3 +51,13 @@ Rules:
 `communication-brief`, `interface-spec`, `competitive-analysis`, `gap-report`,
 `opportunity-report`, `chain-retrospective`, `design-command-improvement-report`,
 `launch-copy`, `email`, `announcement`.
+
+## Artifact reconciliation
+
+After completing any implementation, apply the `artifact-reconciliation` standard
+(forgers-tech `skills` plugin): if the change created or modified long-term
+knowledge — architecture/ADR, security matrix/threat model, runbook, API docs,
+product behavior, or an engineering standard — update the corresponding artifact,
+explaining the **why** rather than duplicating the implementation. Durable
+rationale lives in `webhookr-artifacts/engineering`; operational docs live next
+to the code.
