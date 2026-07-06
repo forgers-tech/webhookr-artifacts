@@ -52,12 +52,27 @@ Rules:
 `opportunity-report`, `chain-retrospective`, `design-command-improvement-report`,
 `launch-copy`, `email`, `announcement`.
 
-## Artifact reconciliation
+## Artifacts workflow (source of truth)
 
-After completing any implementation, apply the `artifact-reconciliation` standard
-(forgers-tech `skills` plugin): if the change created or modified long-term
-knowledge — architecture/ADR, security matrix/threat model, runbook, API docs,
-product behavior, or an engineering standard — update the corresponding artifact,
-explaining the **why** rather than duplicating the implementation. Durable
-rationale lives in `webhookr-artifacts/engineering`; operational docs live next
-to the code.
+This repository **is** the org's long-term source of truth. Across every repo, code is an
+implementation of these artifacts, not the primary record — so the workflow both consumes
+knowledge from here before coding and contributes knowledge back here after.
+
+### Before (consume)
+
+Before producing or revising an artifact — and before any implementation in a consuming repo —
+read the existing artifacts for the topic first (walk the relevant `INDEX.md`). Understand the
+current architecture and product decisions, and verify whether a governing artifact — RFC, ADR,
+User Story, PMM, Security Matrix / Threat Model, or Operational guide / Runbook — already exists.
+Never contradict a documented decision silently: a revision is a new `v<N>` (never overwrite),
+and anything unverified is labelled `Assumption:`.
+
+### After (reconcile)
+
+After any implementation, the `artifact-reconciliation` standard (forgers-tech `skills` plugin)
+decides whether durable knowledge changed and lands the update here: architecture / ADR / RFC,
+security matrix / threat model, runbook or operational procedure, infrastructure or deployment
+docs, API documentation, product behavior / User Story / PMM, or a reusable engineering
+standard — always explaining **why** the decision exists rather than duplicating the
+implementation. The *why* lives here under `engineering/` (or `marketing/`); the operational
+what/how lives next to the code and cross-links back.
