@@ -51,8 +51,9 @@ migration `20260706000000_event_processor_engine`).
    is incremented for `unknown | not_configurable | unavailable` (the validations the service
    raises directly). `not_owned` is **not** emitted as a rejection label — ownership failures
    surface as the standard opaque 404 from `ProjectService` / `EndpointService.findOne` and are
-   already visible via the HTTP metrics interceptor and logs. The metric type still lists the
-   `not_owned` reason for completeness.
+   already visible via the HTTP metrics interceptor and logs. The `not_owned` value was dropped
+   from the `ProcessorConfigRejectionReason` type (Copilot review) so it reflects only the reasons
+   actually emitted.
 
 3. **Project scope is a two-value toggle in the UI (no explicit "reset to default" control).**
    Spec §3 describes project = On/Off toggle; the `resetProjectConfig` API/mutation exists and is
@@ -64,6 +65,11 @@ migration `20260706000000_event_processor_engine`).
    host the section, so project processors live at
    `/dashboard/projects/[projectId]/processors` (mirroring the `…/rename` route pattern). Endpoint
    processors are a section appended to the existing endpoint detail page.
+
+5. **Auth guard naming.** The spec says "`JwtAuthGuard` + ownership"; the as-built controllers add
+   no per-route guard and rely on the **global `CompositeAuthGuard`** (JWT-based, `APP_GUARD`),
+   exactly like the other resource controllers (e.g. `EndpointController`). Ownership is enforced in
+   the service. Clarified in `docs/processor-config.md` after Copilot review; no behavior change.
 
 Everything else shipped as specified: catalog lists all PRODUCT processors; read model reuses the
 event-free `PipelineResolver.resolve` and applies the global `webhookr.processors.enabled` gate on
