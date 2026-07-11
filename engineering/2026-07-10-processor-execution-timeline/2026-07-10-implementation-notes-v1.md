@@ -14,7 +14,7 @@ was implemented across the four repos, and the few places the as-built code make
 spec left to implementation. The spec remains the design record; this note captures the *why* of
 those choices and the accepted follow-ups so the store stays honest.
 
-## Shipped (PRs open, awaiting review/merge)
+## Implemented (PRs open, awaiting review/merge)
 
 - **webhookr-svc** [#130](https://github.com/forgers-tech/webhookr-svc/pull/130) — schema (two
   migrations), engine timing, write-once persist, idempotency short-circuit, event-detail read
