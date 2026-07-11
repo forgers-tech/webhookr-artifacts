@@ -7,11 +7,11 @@ source: manual
 status: Approved
 ---
 
-# ADR — `/downstream`: the implementation stage of the feature pipeline
+# ADR-004: `/downstream` — the implementation stage of the feature pipeline
 
 ## Status
 
-Approved — shipped in `forgers-tech/skills` v1.2.0 ([PR #18](https://github.com/forgers-tech/skills/pull/18)).
+Approved (2026-07-10) — shipped in `forgers-tech/skills` v1.2.0 ([PR #18](https://github.com/forgers-tech/skills/pull/18)).
 
 ## Context
 
