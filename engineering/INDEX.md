@@ -2,6 +2,9 @@
 
 Newest first. One line per artifact. Follows the same storage convention as `marketing/` (see `../CLAUDE.md`).
 
+## 2026-07-10 — downstream-command (manual)
+- [adr-downstream-command v1](2026-07-10-downstream-command/2026-07-10-adr-downstream-command-v1.md) — **Approved.** Adds `/downstream` as the implementation stage of the feature pipeline (`/upstream` spec → `/gatekeeper` review → `/downstream` implement), shipped in `forgers-tech/skills` v1.2.0 (PR #18). Records the *why*: close the pipeline so the upstream quality gate isn't lost at build time, encode the org's engineering standards once (evidence-first, repository-first, no-hallucination, security/observability-by-default, tests, docs, safe rollout) as the executable counterpart to `artifact-reconciliation`, and cut operator variance via a consistent implementation report. Multi-perspective (not single-persona); halts on missing mandatory inputs. Implementation lives in the `skills` repo; this ADR is the rationale only
+
 ## 2026-07-10 — processor-execution-timeline (/upstream)
 - [feature-spec-processor-execution-timeline v1](2026-07-10-processor-execution-timeline/2026-07-10-feature-spec-processor-execution-timeline-v1.md) — **Draft.** Expose the per-event processor timeline (already persisted by the engine) — gap-closure not greenfield: add `EventProcessorRun.startedAt/endedAt`, make persist **write-once immutable** (replaces `deleteMany+createMany`), surface ordered `processorRuns` on event-detail across svc REST → bff GraphQL → web, Grafana stop/failure panel. Adds **force send**: `Delivery.trigger` enum (AUTOMATIC/REPLAY/FORCED) + `forceDeliverEvent` to deliver a pipeline-blocked event (supersedes `assertReplayable`'s hard dead-end), audited + metered + flag-gated. OQ-1/2/3/4 resolved (all-enabled=required, replay≠reprocess, DISABLED shown de-emphasized, retention=Event lifecycle). Estimate M
 
