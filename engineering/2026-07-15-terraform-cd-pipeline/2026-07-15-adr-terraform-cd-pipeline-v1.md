@@ -60,12 +60,14 @@ Two constraints surfaced during rollout forced documented adaptations of D-2/D-5
    gate, and the disable switch. Consistent with **R-8** (single-maintainer self-approval was
    already weak). Alternatives left open: upgrade to Team (b), or a two-dispatch plan→apply flow (c).
 
-2. **`SOPS_AGE_KEY` is a repository secret, not an Environment secret.** GitHub does **not**
-   propagate Environment secrets into a **reusable** workflow's `secrets` context, so the age key
-   is passed explicitly from the caller and therefore lives as a repo secret — which is reachable
-   by `pull_request` workflows in this repo (the apply workflow itself never runs on PRs).
-   Accepted for now under the single-maintainer posture (R-8). **Hardening follow-up:** inline the
-   apply jobs (drop the reusable) so the key can return to an Environment secret. Tracked.
+2. **`SOPS_AGE_KEY` lives only as an Environment secret (hardened).** GitHub does **not**
+   propagate Environment secrets into a **reusable** workflow's `secrets` context, so the first
+   cut passed the age key from the caller as a repo secret (PR-reachable). This was **hardened
+   the same day** ([terraform#115](https://github.com/forgers-tech/terraform/pull/115)): the apply
+   jobs were **inlined** (the reusable `_tf-apply.yml` dropped), so each job sets `environment:`
+   directly and reads `SOPS_AGE_KEY` from a `main`-only Environment (`tf-plan` / `production` /
+   `development`). The repo secret was deleted; the age key is **no longer reachable by
+   `pull_request` workflows**. Re-validated green on all three targets after the change.
 
 **Operational facts:** the GitHub App is installed on the **org** with **All repositories** access
 (the mono-root governs every org repo — a `terraform`-only install 404s the rest) and the org/repo
